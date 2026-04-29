@@ -45,3 +45,36 @@ console.log(players);
 console.log(highScore);
 
 //Task 1c
+
+
+function registerAttendance(students) {
+  let presentCount = 0;
+
+  const messages = students.map((student) => {
+    const status = student.status ? student.status : { present: false };
+
+    if (status.present === true) {
+      presentCount++;
+      return `${student.name} is present`;
+    }
+
+    return `${student.name} is absent`;
+  });
+
+  return {
+    messages,
+    presentCount
+  };
+}
+
+const students = [
+  { name: "Ava" },
+  { name: "Noah", status: { present: false } },
+  { name: "Mia", status: { present: true } }
+];
+
+const attendanceResult = registerAttendance(students);
+
+console.log(attendanceResult.messages);
+console.log(attendanceResult.presentCount);
+console.log(students);
