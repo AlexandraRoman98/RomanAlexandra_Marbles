@@ -43,3 +43,35 @@ Bugs and Mistakes:
 2. The if statement has no braces, however it still works here, but its harder to read and easier to break later on.
 3. The return statement uses points += 10 inside string building, and the code can be confusing and changes points unnecessarily.
 4. The function name updateScores can be misleading, as it sounds like multiple scores are updated, but the function is only handling one player at a time.
+
+
+
+## Task 1c
+
+### Original code
+```js
+const presentCount = 0;
+const defaultStatus = { present: false };
+
+function registerAttendance(students) {
+  return students.map((student) => {
+    if (!student.status) {
+      student.status = defaultStatus;
+    }
+
+    if ((student.status.present = true)) {
+      presentCount++;
+    }
+
+    return student.name + " is present";
+  });
+}
+
+Bugs and Mistakes
+1. presentCount is declared const but it is later added, and this way the code crashes when trying to update it
+2. student.status = defaultStatus  reuses the same object for multiple students, therefore several students may share the same status objects
+3. student.status.present = true uses assignment instead of comparison, every student becomes present even if they are not
+4. The function always returns "is present", and the result is incorrect for students that are absent
+5. The function mutates the original input objects, as the original data is changed unexpectedly
+
+All the improved code is in task1.js 
