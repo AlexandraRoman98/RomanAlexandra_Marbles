@@ -19,3 +19,29 @@ function calcTotal(prices) {
 }
 
 console.log(calcTotal([10, 20, 5.5])); //35.50 is the answer
+
+//TASK 1b
+
+let highScore = 0;
+let players = [];
+
+function updateScore(name, points) {
+  if (!players.includes(name)) {
+    players.push(name);
+  }
+
+  if (points > highScore) {
+    highScore = points;
+  }
+
+  const updatedPoints = points + 10;
+  return `${name} now has ${updatedPoints}`;
+}
+
+console.log(updateScore("Tony", 40));
+console.log(updateScore("Tony", 50));
+console.log(updateScore("Rony", 150));
+console.log(players);
+console.log(highScore);
+
+//Task 1c
