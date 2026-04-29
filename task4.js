@@ -1,48 +1,65 @@
 
-let a = "red";
-let b = 0;
+const LIGHTS = {
+    RED: "red",
+    GREEN: "green",
+    YELLOW: "yellow"
+};
 
-function x() {
-  if (a == "red") {
-    console.log("STOP");
-    b = b + 1;
+const MESSAGES = {
+    red: "STOP",
+    green: "GO",
+    yellow: "SLOW"
+};
 
-    if (b > 2) {
-      a = "green";
-      b = 0;
-    }
-  } else {
-    if (a == "green") {
-      console.log("GO");
-      b = b + 1;
+const DURATIONS = {
+    red: 3,
+    green: 4,
+    yellow: 1
+};
 
-      if (b > 3) {
-        a = "yellow";
-        b = 0;
-      }
-    } else {
-      if (a == "yellow") {
-        console.log("SLOW");
-        b = b + 1;
+let currentLight = LIGHTS.RED;
+let ticksInCurrentLight = 0;
 
-        if (b > 0) {
-          a = "red";
-          b = 0;
-        }
-      } else {
-        console.log("BROKEN");
-        a = "red";
-        b = 0;
-      }
-    }
-  }
+function resetTrafficLight() {
+    currentLight = LIGHTS.RED;
+    ticksInCurrentLight = 0;
 }
 
-x();
-x();
-x();
-x();
-x();
-x();
-x();
-x();
+function getNextLight(light) {
+    if (light === LIGHTS.RED) {
+        return LIGHTS.GREEN;
+    } 
+    if (light === LIGHTS.GREEN) {
+        return LIGHTS.YELLOW;
+    }
+    if (light === LIGHTS.YELLOW) {
+        return LIGHTS.RED;
+    }
+    return LIGHTS.RED;
+}
+
+
+function updateTrafficLight() {
+    if(!MESSAGES[currentLight]) {
+        console.log("BROKEN");
+        resetTrafficLight();
+        return;
+    }
+    
+    console.log(MESSAGES[currentLight]);
+    ticksInCurrentLight++;
+
+    if(ticksInCurrentLight >= DURATIONS[currentLight]) {
+        currentLight = getNextLight(currentLight);
+        ticksInCurrentLight = 0;
+    }
+}
+
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
+updateTrafficLight();
