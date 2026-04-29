@@ -1,5 +1,5 @@
 const user = { name: "Sara", score: 10 };
-const backup = user;
+const backup = {...user};
 
 backup.score = 25;
 
