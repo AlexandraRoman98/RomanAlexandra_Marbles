@@ -1,9 +1,8 @@
-let points = 5;
+const startingPoints = 5;
 
-function addPoints(points) {
-  points = points + 10;
-  return points;
+function addPoints(value) {
+  return value + 10;
 }
 
-console.log(addPoints(2));
-console.log(points);
+console.log(addPoints(2)); // shows 12
+console.log(startingPoints); //shows 5
